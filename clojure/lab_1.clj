@@ -14,7 +14,7 @@
 ;; sequentially add each element from l to each element from acc
 (defn process 
   [l, acc]
-  (map #(add-seq-to-every-element (remove-char-from-list % l) %) acc))
+  (map #(add-seq-to-every-element (remove-char-from-list (str (first %)) l) %) acc))
 
 (defn join 
   [l]
@@ -30,6 +30,5 @@
   [n]
   (reduce comb-util input (range (- n 1)))) 
 
-(generate-combinations 2)
-;; ("ba" "ca" "ab" "cb" "ac" "bc")
-
+(println (generate-combinations 3))
+;; ("ba" "ca" "ab" "cb" "ac" "bc")(println "Hello World!")
