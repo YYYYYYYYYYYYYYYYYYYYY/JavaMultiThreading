@@ -21,7 +21,7 @@ public class Counting extends Thread{
 
         while (!Thread.currentThread().isInterrupted()) {
             res += Math.pow(-1, i) / (2 * i + 1);
-            i += threads;
+            i += threads;//BAD
         }
 
         controller.setResult(res);
