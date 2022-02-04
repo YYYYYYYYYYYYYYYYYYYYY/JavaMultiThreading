@@ -4,6 +4,8 @@ public class Counting extends Thread{
 
     private int start;
     private int threads;
+    private static final Object maxIterationsLock = Object();
+    private static volatile long maxIterations = 0L;
 
     private Controller controller;
 
@@ -21,8 +23,18 @@ public class Counting extends Thread{
 
         while (!Thread.currentThread().isInterrupted()) {
             res += Math.pow(-1, i) / (2 * i + 1);
-            i += threads;//BAD
+            i += threads;
+            synchronized (maxIterLock) {
+                    if (i > maxIter) {
+                        maxIter = i;
+               }
+            }
         }
+        while(i < maxIter) {
+                res += Math.pow(-1, i) / (2 * i + 1);
+                i += threads;
+        }
+        
 
         controller.setResult(res);
     }
