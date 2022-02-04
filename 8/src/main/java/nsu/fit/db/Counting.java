@@ -4,8 +4,8 @@ public class Counting extends Thread{
 
     private int start;
     private int threads;
-    private static final Object maxIterationsLock = Object();
-    private static volatile long maxIterations = 0L;
+    private static final Object maxIterLock = Object();
+    private static volatile long maxIter = 0L;
 
     private Controller controller;
 
